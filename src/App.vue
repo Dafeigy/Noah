@@ -9,12 +9,10 @@
 //   // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 //   greetMsg.value = await invoke("greet", { name: name.value });
 // }
-import { Button } from '@/components/ui/button'
+// import { Button } from '@/components/ui/button'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold underline bg-red-400">
-    Hello world!
-  </h1>
-  <Button>Click me</Button>
+  <RouterView/>
 </template>
