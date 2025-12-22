@@ -1,9 +1,5 @@
-<script lang="ts">
-export const description = "A sidebar in a popover."
-export const iframeHeight = "800px"
-</script>
-
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import AppSidebar from "@/components/AppSidebar.vue"
 import NavActions from "@/components/NavActions.vue"
 import {
@@ -12,14 +8,28 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb"
+// import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-</script>
+import * as pdfjsLib from 'pdfjs-dist'
 
+// const url = 'src/assets/SplitHE_Int.pdf';
+// const url = 'src/assets/dummy.pdf';
+const pdfViewer = ref<HTMLElement | null>(null)
+
+onMounted(async () => {
+  if (!pdfViewer.value) return
+  
+  // 设置PDF.js worker
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@5.4.449/build/pdf.worker.mjs'
+  // await loadPDF(url)
+  
+})
+</script>
 <template>
   <SidebarProvider>
     <AppSidebar />
@@ -35,7 +45,7 @@ import {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbPage class="line-clamp-1">
-                  Project Management & Task Tracking
+                  xx文件.pdf
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
@@ -45,9 +55,8 @@ import {
           <NavActions />
         </div>
       </header>
-      <div class="flex flex-1 flex-col gap-4 px-4 py-10">
-        <div class="bg-muted/50 mx-auto h-24 w-full max-w-3xl rounded-xl" />
-        <div class="bg-muted/50 mx-auto h-full w-full max-w-3xl rounded-xl" />
+      <div class="flex flex-1 justify-center">
+        <router-view />
       </div>
     </SidebarInset>
   </SidebarProvider>

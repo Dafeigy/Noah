@@ -37,7 +37,7 @@ const { isMobile } = useSidebar()
 
 <template>
   <SidebarGroup class="group-data-[collapsible=icon]:hidden">
-    <SidebarGroupLabel>Favorites</SidebarGroupLabel>
+    <SidebarGroupLabel>Recents</SidebarGroupLabel>
     <SidebarMenu>
       <SidebarMenuItem v-for="item in favorites" :key="item.name">
         <SidebarMenuButton as-child>

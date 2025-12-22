@@ -15,7 +15,7 @@ import {
   Trash2,
 } from "lucide-vue-next"
 
-import NavFavorites from '@/components/NavFavorites.vue'
+import NavRecents from '@/components/NavRecents.vue'
 import NavMain from '@/components/NavMain.vue'
 import NavSecondary from '@/components/NavSecondary.vue'
 import NavWorkspaces from '@/components/NavWorkspaces.vue'
@@ -33,7 +33,7 @@ const props = defineProps<SidebarProps>()
 const data = {
   teams: [
     {
-      name: "Acme Inc",
+      name: "Laeis Inc",
       logo: Command,
       plan: "Enterprise",
     },
@@ -51,19 +51,19 @@ const data = {
   navMain: [
     {
       title: "Search",
-      url: "#",
+      url: "/search",
       icon: Search,
     },
     {
       title: "Ask AI",
-      url: "#",
+      url: "/ai",
       icon: Sparkles,
     },
     {
       title: "Home",
-      url: "#",
+      url: "/",
       icon: Home,
-      isActive: true,
+      // isActive: true,
     },
     {
       title: "Inbox",
@@ -100,56 +100,71 @@ const data = {
     },
   ],
   favorites: [
+    // {
+    //   name: "Project Management & Task Tracking",
+    //   url: "#",
+    //   emoji: "📊",
+    // },
+    // {
+    //   name: "Family Recipe Collection & Meal Planning",
+    //   url: "#",
+    //   emoji: "🍳",
+    // },
+    // {
+    //   name: "Fitness Tracker & Workout Routines",
+    //   url: "#",
+    //   emoji: "💪",
+    // },
+    // {
+    //   name: "Book Notes & Reading List",
+    //   url: "#",
+    //   emoji: "📚",
+    // },
+    // {
+    //   name: "Sustainable Gardening Tips & Plant Care",
+    //   url: "#",
+    //   emoji: "🌱",
+    // },
+    // {
+    //   name: "Language Learning Progress & Resources",
+    //   url: "#",
+    //   emoji: "🗣️",
+    // },
+    // {
+    //   name: "Home Renovation Ideas & Budget Tracker",
+    //   url: "#",
+    //   emoji: "🏠",
+    // },
+    // {
+    //   name: "Personal Finance & Investment Portfolio",
+    //   url: "#",
+    //   emoji: "💰",
+    // },
+    // {
+    //   name: "Movie & TV Show Watchlist with Reviews",
+    //   url: "#",
+    //   emoji: "🎬",
+    // },
+    // {
+    //   name: "Daily Habit Tracker & Goal Setting",
+    //   url: "#",
+    //   emoji: "✅",
+    // },
     {
-      name: "Project Management & Task Tracking",
-      url: "#",
-      emoji: "📊",
-    },
-    {
-      name: "Family Recipe Collection & Meal Planning",
-      url: "#",
-      emoji: "🍳",
-    },
-    {
-      name: "Fitness Tracker & Workout Routines",
-      url: "#",
-      emoji: "💪",
-    },
-    {
-      name: "Book Notes & Reading List",
-      url: "#",
-      emoji: "📚",
-    },
-    {
-      name: "Sustainable Gardening Tips & Plant Care",
-      url: "#",
-      emoji: "🌱",
-    },
-    {
-      name: "Language Learning Progress & Resources",
-      url: "#",
-      emoji: "🗣️",
-    },
-    {
-      name: "Home Renovation Ideas & Budget Tracker",
-      url: "#",
-      emoji: "🏠",
-    },
-    {
-      name: "Personal Finance & Investment Portfolio",
-      url: "#",
-      emoji: "💰",
-    },
-    {
-      name: "Movie & TV Show Watchlist with Reviews",
-      url: "#",
-      emoji: "🎬",
-    },
-    {
-      name: "Daily Habit Tracker & Goal Setting",
-      url: "#",
-      emoji: "✅",
-    },
+        name: "年出力容量分析.pdf",
+        url: "/files/annual-capacity-analysis",
+        emoji: "📄",
+      },
+      {
+        name: "运行曲线分析.pdf",
+        url: "/files/operation-curve-analysis",
+        emoji: "📄",
+      },
+      {
+        name: "故障分析.pdf",
+        url: "/files/fault-analysis",
+        emoji: "📄",
+      },
   ],
   workspaces: [
     {
@@ -268,7 +283,7 @@ const data = {
       <NavMain :items="data.navMain" />
     </SidebarHeader>
     <SidebarContent>
-      <NavFavorites :favorites="data.favorites" />
+      <NavRecents :favorites="data.favorites" />
       <NavWorkspaces :workspaces="data.workspaces" />
       <NavSecondary :items="data.navSecondary" class="mt-auto" />
     </SidebarContent>

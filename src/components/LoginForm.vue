@@ -12,6 +12,8 @@ import {
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 
+import TODO from '@/components/Todo.vue'
+
 const props = defineProps<{
   class?: HTMLAttributes["class"]
 }>()
@@ -34,7 +36,7 @@ const props = defineProps<{
             <Field>
               
               <FieldLabel for="email">
-                Email<p class="bg-orange-300 text-[8px]">[TODO]</p>
+                Email
               </FieldLabel>
               <Input
                 id="email"
@@ -53,7 +55,7 @@ const props = defineProps<{
                   class="ml-auto text-sm underline-offset-2 hover:underline"
                 >
                   Forgot your password?
-                </a><p class="bg-orange-300 text-[8px]">[TODO]</p>
+                </a>
               </div>
               <Input id="password" type="password" required />
             </Field>
