@@ -1,14 +1,17 @@
-<script lang="ts">
-
-</script>
-
 <script setup lang="ts">
 // import LoginForm from "@/components/LoginForm.vue"
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import Button from '@/components/ui/button/Button.vue';
 import CoverBanner from "@/components/CoverBanner.vue"
+import { BlockNoteEditor } from "@blocknote/core";
+// import "@blocknote/core/fonts/inter.css";
+// import "@blocknote/shadcn/style.css";
+onMounted(()=>{
+  const editor = BlockNoteEditor.create();
+  editor.mount(document.getElementById("blocknoteview") as HTMLElement);
+})
 import { BlockNoteView } from 'blocknote-vue'
-import { Exposed } from 'blocknote-vue/es/BlockNoteView.vue'
-import Button from '@/components/ui/button/Button.vue'
+  import { Exposed } from 'blocknote-vue/es/BlockNoteView.vue'
 
   const blockNoteViewRef = ref<Exposed | null>(null)
 
@@ -25,7 +28,7 @@ import Button from '@/components/ui/button/Button.vue'
         content: [
           {
             type: 'text',
-            text: '',
+            text: 'Welcome to this demo!',
             styles: {}
           }
         ],
@@ -78,8 +81,7 @@ import Button from '@/components/ui/button/Button.vue'
         content: [],
         children: []
       }
-    ],
-    editable: false
+    ]
   })
 
   const handleChange = (document: any, changes: any, markdown: string) => {
@@ -117,21 +119,19 @@ import Button from '@/components/ui/button/Button.vue'
 
     editor.replaceBlocks(editor.document, newBlocks)
   }
-
-
 </script>
 
 <template>
   <div class="flex flex-col items-center justify-center p-6 md:p-10 min-h-[svh,100%] w-full w-max-[400px]">
     <CoverBanner />
-    <BlockNoteView
+    <div id="blocknoteview" class="max-w-[1110px] w-full"></div>
+    <div id="vuecontainer" class="max-w-[1110px] w-full">
+      <BlockNoteView
       ref="blockNoteViewRef"
       :editor-props="editorProps"
       @change="handleChange"
-      class="min-w-[1200px] mt-4"
     />
-
-    <Button @click="handleUpdate">update</Button>
+    </div>
   </div>
 </template>
 

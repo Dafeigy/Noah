@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref, onBeforeUnmount } from 'vue';
+// import { onMounted, ref, onBeforeUnmount } from 'vue';
 import CoverBanner from "@/components/CoverBanner.vue"
-import Vditor from 'vditor';
-import 'vditor/dist/index.css';
 
-// 编辑器容器引用
-const editorContainer = ref<HTMLElement | null>(null);
-let vditor: Vditor | null = null;
+
 
 </script>
 
@@ -19,19 +15,3 @@ let vditor: Vditor | null = null;
     
   </div>
 </template>
-
-<style scoped>
-/* Vditor 自定义样式 */
-:deep(.vditor) {
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-:deep(.vditor-toolbar) {
-  border-bottom: 1px solid #e5e7eb;
-}
-
-:deep(.vditor-content) {
-  background-color: white;
-}
-</style>
