@@ -103,7 +103,7 @@ const isOpen = ref(false)
 <template>
   <div class="flex items-center gap-2 text-sm">
     <div class="hidden font-medium text-muted-foreground md:inline-block">
-      Edit Oct 08
+      Update on Dec 25, 2025
     </div>
     <Button variant="ghost" size="icon" class="h-7 w-7">
       <Star />

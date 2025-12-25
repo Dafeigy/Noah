@@ -8,6 +8,7 @@ import search from "./pages/search/index.vue"
 import ai from "./pages/ai/index.vue"
 import settings from "./pages/settings/index.vue"
 import help from "./pages/help/index.vue"
+import Error404 from "./pages/error/index.vue"
 const routes = [
     {
         path: '/login',
@@ -47,9 +48,16 @@ const routes = [
                 path: 'help',
                 component: help,
                 name: 'help'
+            },
+            {
+                path: '/:pathMatch(.*)*',
+                component: Error404,
+                name: '404'
             }
+            
         ]
     },
+    
 ]
 
 const router = createRouter(

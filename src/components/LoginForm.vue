@@ -12,8 +12,6 @@ import {
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 
-import TODO from '@/components/Todo.vue'
-
 const props = defineProps<{
   class?: HTMLAttributes["class"]
 }>()
