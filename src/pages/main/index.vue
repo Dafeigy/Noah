@@ -2,27 +2,14 @@
 import { ref, onMounted } from 'vue'
 import AppSidebar from "@/components/AppSidebar.vue"
 import NavActions from "@/components/NavActions.vue"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbPage,
-} from "@/components/ui/breadcrumb"
-import Button from '@/components/ui/button/Button.vue'
-// import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
+
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { 
-  FolderOpen,
-  Save,
-  FileUp,
-  CloudUpload,
-  Plus 
-} from "lucide-vue-next"
+
+import MainHeader from '@/components/MainHeader.vue'
+
 import * as pdfjsLib from 'pdfjs-dist'
 
 // const url = 'src/assets/SplitHE_Int.pdf';
@@ -43,58 +30,7 @@ onMounted(async () => {
     <AppSidebar />
     <SidebarInset>
       <header class="flex h-14 shrink-0 items-center gap-2">
-        <div class="flex flex-1 items-center gap-2 px-3">
-          <SidebarTrigger />|
-          <Button
-            variant="ghost"
-            size="icon"
-            class="h-7 w-7 data-[state=open]:bg-accent"
-          >
-            <Plus />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            class="h-7 w-7 data-[state=open]:bg-accent"
-          >
-            <FolderOpen />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            class="h-7 w-7 data-[state=open]:bg-accent"
-          >
-            <Save />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            class="h-7 w-7 data-[state=open]:bg-accent"
-          >
-            <FileUp />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            class="h-7 w-7 data-[state=open]:bg-accent"
-          >
-            <CloudUpload />
-          </Button>
-          
-          <Separator
-            orientation="vertical"
-            class="mr-2 data-[orientation=vertical]:h-4"
-          />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbPage class="line-clamp-1">
-                  xx文件.pdf
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
+        <MainHeader />
         <div class="ml-auto px-3">
           <NavActions />
         </div>

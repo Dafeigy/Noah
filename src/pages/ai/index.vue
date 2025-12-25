@@ -6,6 +6,6 @@ import CoverBanner from "@/components/CoverBanner.vue"
 <template>
   <div class="flex flex-col items-center justify-center p-6 md:p-10 min-h-[svh,100%] w-full w-max-[400px]">
     <CoverBanner />
-    
+    AIPAGE
   </div>
 </template>

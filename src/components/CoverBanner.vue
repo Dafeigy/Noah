@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted} from 'vue';
 import { Button } from '@/components/ui/button';
-import { Settings, MoveVertical } from 'lucide-vue-next';
+import { ButtonGroup } from '@/components/ui/button-group';
 
 // 状态管理
 const isHovered = ref(false);
@@ -10,6 +10,7 @@ const imagePosition = ref(0); // 图片位置偏移量（百分比）
 const imageUrl = ref('/src/assets/img/met_horace_pippin.jpg');
 const showImageInput = ref(false);
 const newImageUrl = ref('');
+const fileInputRef = ref<HTMLInputElement | null>(null);
 
 // 保存图片位置到本地存储
 const saveImagePosition = () => {
@@ -59,14 +60,43 @@ const showImageUrlInput = () => {
   newImageUrl.value = imageUrl.value;
 };
 
-// 保存新图片URL
-const saveNewImageUrl = () => {
-  if (newImageUrl.value) {
-    imageUrl.value = newImageUrl.value;
-    localStorage.setItem('coverImageUrl', newImageUrl.value);
-    showImageInput.value = false;
-  }
+// 打开系统文件选择器
+const openFilePicker = () => {
+  fileInputRef.value?.click();
 };
+
+// 处理文件选择
+const handleFileSelect = (event: Event) => {
+  const input = event.target as HTMLInputElement;
+  const file = input.files?.[0];
+  
+  if (file) {
+    // 检查是否是图片文件
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = e.target?.result as string;
+        imageUrl.value = result;
+        localStorage.setItem('coverImageUrl', result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert('请选择图片文件');
+    }
+  }
+  
+  // 重置 input，允许重复选择同一文件
+  input.value = '';
+};
+
+// 保存新图片URL
+// const saveNewImageUrl = () => {
+//   if (newImageUrl.value) {
+//     imageUrl.value = newImageUrl.value;
+//     localStorage.setItem('coverImageUrl', newImageUrl.value);
+//     showImageInput.value = false;
+//   }
+// };
 
 // 取消图片URL修改
 const cancelImageUrlChange = () => {
@@ -93,7 +123,7 @@ onMounted(() => {
   >
     <!-- 图片容器 -->
     <div 
-      class="relative w-full h-[25vh] overflow-hidden bg-cover bg-center duration-50"
+      class="relative w-full h-[25vh] overflow-hidden bg-cover bg-center"
       :class="{ 'cursor-move': isRepositioning }"
       :style="{ backgroundImage: `url(${imageUrl})`, backgroundPositionY: `${imagePosition}%` }"
     >
@@ -101,40 +131,53 @@ onMounted(() => {
     
     <!-- 悬浮按钮 -->
     <div v-if="isHovered" class="absolute top-2 right-2 flex gap-2 bg-white/80 backdrop-blur-sm p-1 rounded-md shadow-md  justify-center">
+      <ButtonGroup>
       <Button 
-        
+        size="sm"
         variant="ghost" 
         @click="showImageUrlInput"
-        title="设置图片目录"
+        title="设置封面"
       >
-        <!-- <Settings class="size-4" /> -->
          <p>设置封面</p>
       </Button>
       <Button 
-        
+        size="sm"
         variant="ghost" 
         :class="{ 'bg-primary text-primary-foreground': isRepositioning }"
         @click="toggleRepositioning"
         title="调整图片位置"
       >
-        <!-- <MoveVertical class="size-4" /> -->
          <p>调整位置</p>
       </Button>
+    </ButtonGroup>
+      
     </div>
     
     <!-- 图片URL输入框 -->
     <div v-if="showImageInput" class="absolute top-16 right-2 bg-white rounded-md shadow-lg p-4 w-80">
       <h3 class="text-sm font-medium mb-2">设置封面图片</h3>
-      <div class="flex gap-2">
+      <div class="flex gap-2 mb-2">
         <input 
           v-model="newImageUrl" 
           type="text" 
-          placeholder="输入图片URL或本地路径" 
+          placeholder="输入图片URL" 
           class="flex-1 px-3 py-2 border rounded-md text-sm"
         >
-        <Button size="sm" @click="saveNewImageUrl">保存</Button>
+      </div>
+      <div class="flex gap-2">
+        <Button size="sm" @click="openFilePicker">选择本地图片</Button>
+        <!-- <Button size="sm" @click="saveNewImageUrl">保存</Button> -->
         <Button size="sm" variant="outline" @click="cancelImageUrlChange">取消</Button>
       </div>
     </div>
+    
+    <!-- 隐藏的文件输入 -->
+    <input
+      ref="fileInputRef"
+      type="file"
+      accept="image/*"
+      class="hidden"
+      @change="handleFileSelect"
+    >
   </div>
 </template>

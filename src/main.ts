@@ -9,6 +9,7 @@ import ai from "./pages/ai/index.vue"
 import settings from "./pages/settings/index.vue"
 import help from "./pages/help/index.vue"
 import Error404 from "./pages/error/index.vue"
+import New from "./pages/new/index.vue"
 const routes = [
     {
         path: '/login',
