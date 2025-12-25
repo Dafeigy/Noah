@@ -123,7 +123,7 @@ onMounted(() => {
   >
     <!-- 图片容器 -->
     <div 
-      class="relative w-full h-[25vh] overflow-hidden bg-cover bg-center"
+      class="relative w-full h-[30vh] overflow-hidden bg-cover bg-center"
       :class="{ 'cursor-move': isRepositioning }"
       :style="{ backgroundImage: `url(${imageUrl})`, backgroundPositionY: `${imagePosition}%` }"
     >
