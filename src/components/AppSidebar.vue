@@ -151,24 +151,24 @@ const data = {
     //   emoji: "✅",
     // },
     {
-        name: "年出力容量分析.pdf",
+        name: "test1.pdf",
         url: "/files/annual-capacity-analysis",
         emoji: "📄",
       },
       {
-        name: "运行曲线分析.pdf",
+        name: "test2.pdf",
         url: "/files/operation-curve-analysis",
         emoji: "📄",
       },
       {
-        name: "故障分析.pdf",
+        name: "test3.pdf",
         url: "/files/fault-analysis",
         emoji: "📄",
       },
   ],
   workspaces: [
     {
-      name: "Personal Life Management",
+      name: "Python Compiler",
       emoji: "🏠",
       pages: [
         {
@@ -189,7 +189,7 @@ const data = {
       ],
     },
     {
-      name: "Professional Development",
+      name: "Rust Development",
       emoji: "💼",
       pages: [
         {
@@ -210,7 +210,7 @@ const data = {
       ],
     },
     {
-      name: "Creative Projects",
+      name: "Web Development",
       emoji: "🎨",
       pages: [
         {
